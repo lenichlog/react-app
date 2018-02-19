@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <!--Loading CSS-file-->
+    <link href="{{ url_for('static', filename='main.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='table.css') }}" rel="stylesheet">
+    <!--loading static js libs (react + d3 + custom)-->
+
+    <script src="{{ url_for('static', filename='react.development.js') }}"></script>
+    <script src="{{ url_for('static', filename='react-dom.development.js') }}"></script>
+    <!--<script src="https://unpkg.com/react@16/umd/react.development.js"></script>-->
+    <!--<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>-->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <script src="{{ url_for('static', filename='d3.v4.min.js') }}"></script>
+    <title>React App</title>
+  </head>
+
+  <body>
+
+    <div id="title"></div>
+    <div class="customSpaceBig"></div>
+    <div id="main" style="height: 60%">
+      <table height="500">
+        <tr>
+          <td width="50%">
+            <form action="/uploadfile" method="POST" enctype="multipart/form-data" id="mid">
+            <input type="file" name="file" id="upload_hidden" class="hidden" onchange="onChangeDropZone(this.value)" />
+                <!--style="position: absolute; display: block; overflow: hidden; width: 0; height: 0; border: 0; padding: 0;"-->
+            <button type="button" id="drop_zone"
+                onclick="document.getElementById('upload_hidden').click();"><p id="loadButtonText">Click here or Drop here your Excel file</p></button>
+            <button type="submit" id="button_hidden" class="hidden">Загрузить норм</button>
+            <br/>
+            <div class="customSpace"></div>
+            <button type="button" class ="btn-class" onclick="sendButton()">Upload</button>
+            <output id="list"></output>
+            </form>
+            <script type="text/babel"></script>
+          </td>
+
+          <td id="table" height="400">
+
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div id="drawboard">
+      <!--<button type="button" class ="btn-class" onclick="showGraph()">Show results</button>-->
+
+      <svg width="1000" height="1000" style="background-color: antiquewhite"></svg>
+
+
+
+      <script src="{{ url_for('static', filename='graph.js') }}"></script>
+    </div>
+    <script type = "text/babel" src="{{ url_for('static', filename='index.js') }}" charset="utf-8"></script>
+  </body>
+</html>
